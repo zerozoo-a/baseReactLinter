@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'development';
@@ -40,11 +40,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist/',
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: '/index.html',
-    }),
-  ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     template: '/index.html',
+  //   }),
+  // ],
   devServer: {
     port: 9000,
     publicPath: '/dist/',
