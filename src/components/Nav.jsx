@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { useTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 
+import FirstTab from './FirstTab';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -67,7 +69,7 @@ export default function SimpleTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        One
+        <FirstTab />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Two
