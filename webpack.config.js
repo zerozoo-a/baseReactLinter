@@ -13,7 +13,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', 'json'],
   },
-  entry: './client.jsx',
+  entry: './Client.jsx',
   module: {
     rules: [
       {
