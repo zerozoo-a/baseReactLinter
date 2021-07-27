@@ -4,16 +4,16 @@ const webpack = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'development';
-console.log('isProduct?: ', isDevelopment);
+console.log('isProduct?: ', isDevelopment==='product');
 module.exports = {
   name: 'setVersionTest',
-  // mode: isDevelopment ? 'development' : 'production',
-  mode: isDevelopment ? 'production' : 'development',
+  mode: isDevelopment ? 'development' : 'production',
+  // mode: isDevelopment ? 'production' : 'development',
   devtool: isDevelopment ? 'eval' : '',
   resolve: {
     extensions: ['.js', '.jsx', 'json'],
   },
-  entry: './client.jsx',
+  entry: './Client.jsx',
   module: {
     rules: [
       {
