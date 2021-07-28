@@ -30,30 +30,25 @@ module.exports = {
       },
     ],
   },
-
-  // plugins: [
-  //   isDevelopment && new webpack.HotModuleReplacementPlugin(),
-  //   isDevelopment && new ReactRefreshWebpackPlugin(),
-  // ].filter(Boolean),
   plugins: [
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
   ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist',
+    path: path.resolve(__dirname, 'dist/'),
+    publicPath: '/dist/',
   },
   plugins:[
      new CopyWebpackPlugin({
       patterns:[
-        {from:'./index.html', to:'./index.html'},
+            {from:'./index.html', to:'./index.html'},
       ]
     })
   ],
   devServer: {
     port: 9000,
-    publicPath: '/dist/',
+    publicPath: '/',
     hot: true,
   },
 };
