@@ -102,7 +102,7 @@ module.exports = {
         {from:'./index.html', to:'./index.html'},
         {from:'./dist/main.bundle.js', to:'./dist'}
   ]}),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
