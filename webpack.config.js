@@ -1,8 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'development';
 console.log('isProduct?: ', isDevelopment==='product');
@@ -33,6 +33,7 @@ module.exports = {
   },
 
   plugins: [
+    new CopyWebpackPlugin({patterns: ['index.html']}),
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
@@ -41,7 +42,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist/',
   },
-  plugins:[new CopyWebpackPlugin(['index.html'])]
+  // plugins: [new CopyWebpackPlugin(['index.html'])] ,
   // plugins: [
   //   new HtmlWebpackPlugin({
   //     template: '/index.html',
@@ -52,4 +53,9 @@ module.exports = {
     publicPath: '/dist/',
     hot: true,
   },
+  // plugins: [
+  //   new CopyWebpackPlugin({
+  //     patterns: ['index.html']
+  //   })
+  // ]
 };
