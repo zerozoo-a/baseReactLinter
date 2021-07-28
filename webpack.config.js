@@ -39,6 +39,11 @@ module.exports = {
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
   ],
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist/dist'),
+    publicPath: '/dist/dist',
+  },
   plugins:[
      new CopyWebpackPlugin({
       patterns:[
@@ -46,11 +51,6 @@ module.exports = {
       ]
     })
   ],
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist/dist'),
-    publicPath: '/dist/dist',
-  },
   devServer: {
     port: 9000,
     publicPath: '/dist/',
