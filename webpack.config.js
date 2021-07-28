@@ -67,7 +67,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 console.log('isDev?: ',isDevelopment);
@@ -96,20 +96,25 @@ module.exports = {
     ],
   },
 
+  // plugins: [
+  //   isDevelopment && new webpack.HotModuleReplacementPlugin(),
+  //   isDevelopment && new ReactRefreshWebpackPlugin(),
+  // ].filter(Boolean),
   plugins: [
-    new CopyWebpackPlugin({
-      patterns:[
-        {from:'./index.html', to:'./index.html'},
-        {from:'./dist/main.bundle.js', to:'./dist'}
-  ]}),
-    // new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
-  ].filter(Boolean),
+  ],
+  plugins:[
+     new CopyWebpackPlugin({
+      patterns:[
+        {from:'./index.html', to:'../index.html'},
+      ]
+    })
+  ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/',
+    path: path.resolve(__dirname, 'dist/dist'),
+    publicPath: '/dist/dist',
   },
   devServer: {
     port: 9000,
