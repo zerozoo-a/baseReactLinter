@@ -11,7 +11,7 @@ const App = () => {
     console.log('local:', localStorage.getItem('key'));
   };
 
-  // amplify-test-2
+  // amplify-test-3
 
   return (
     <>
