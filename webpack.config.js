@@ -66,16 +66,15 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const isDevelopment = process.env.NODE_ENV !== 'development';
-console.log('isProduct?: ', isDevelopment==='product');
+const isDevelopment = process.env.NODE_ENV === 'development';
+console.log('isDev?: ',isDevelopment);
 module.exports = {
   name: 'setVersionTest',
-  // mode: isDevelopment ? 'development' : 'production',
-  mode: isDevelopment ? 'production' : 'development',
-  devtool: isDevelopment ? 'eval' : '',
+  mode: isDevelopment ? 'development' : 'production',
+  devtool: isDevelopment && 'eval' ,
   resolve: {
     extensions: ['.js', '.jsx', 'json'],
   },
@@ -98,11 +97,14 @@ module.exports = {
   },
 
   plugins: [
-    new CopyWebpackPlugin({patterns:['index.html']}),
-    // new webpack.HotModuleReplacementPlugin(),
-
-    // isDevelopment && new webpack.HotModuleReplacementPlugin(),
-    // isDevelopment && new ReactRefreshWebpackPlugin(),
+    new CopyWebpackPlugin({
+      patterns:[
+        {from:'./index.html', to:'./index.html'},
+        {from:'./dist/main.bundle.js', to:'./dist'}
+  ]}),
+    new webpack.HotModuleReplacementPlugin(),
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
+    isDevelopment && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
   output: {
     filename: '[name].bundle.js',
