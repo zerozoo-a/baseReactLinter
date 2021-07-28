@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -33,7 +33,7 @@ module.exports = {
   },
 
   plugins: [
-    new CopyWebpackPlugin({patterns: ['index.html']}),
+    // new CopyWebpackPlugin({patterns: ['index.html']}),
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
