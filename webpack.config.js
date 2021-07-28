@@ -62,8 +62,9 @@
 
 const path = require('path');
 const webpack = require('webpack');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'development';
 console.log('isProduct?: ', isDevelopment==='product');
@@ -94,6 +95,9 @@ module.exports = {
   },
 
   plugins: [
+    new CopyWebpackPlugin({patterns:['index.html']}),
+    new webpack.HotModuleReplacementPlugin(),
+
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
@@ -102,11 +106,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist/',
   },
-  // plugins: [
-  //   new HtmlWebpackPlugin({
-  //     template: '/index.html',
-  //   }),
-  // ],
   devServer: {
     port: 9000,
     publicPath: '/dist/',
