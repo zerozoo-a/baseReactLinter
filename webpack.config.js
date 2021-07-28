@@ -41,8 +41,8 @@ module.exports = {
   ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist/public/'),
-    publicPath: '/dist/public/',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist',
   },
   plugins:[
      new CopyWebpackPlugin({
