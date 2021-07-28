@@ -2,14 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
-console.log('isDev?: ',isDevelopment);
+console.log('isDev?: ', isDevelopment);
 module.exports = {
   name: 'setVersionTest',
   mode: isDevelopment ? 'development' : 'production',
-  devtool: isDevelopment && 'eval' ,
+  devtool: isDevelopment && 'eval',
   resolve: {
     extensions: ['.js', '.jsx', 'json'],
   },
@@ -36,19 +36,22 @@ module.exports = {
   ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist/'),
-    publicPath: '/dist/',
+    path: path.resolve(__dirname, 'dist/public/'),
+    // publicPath: '/dist/public/',
+    publicPath: './public/',
   },
-  plugins:[
-     new CopyWebpackPlugin({
-      patterns:[
-            {from:'./index.html', to:'./index.html'},
-      ]
-    })
+  plugins: [
+    // new CopyWebpackPlugin({
+    //   patterns: [{ from: './index.html', to: '../index.html' }],
+    // }),
+    new HtmlWebpackPlugin({
+      filename: '../index.html',
+      template: './index.html',
+    }),
   ],
   devServer: {
     port: 9000,
-    publicPath: '/',
+    publicPath: './public/',
     hot: true,
   },
 };
