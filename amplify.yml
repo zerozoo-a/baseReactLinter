@@ -1,0 +1,21 @@
+version: 1
+env:
+  variables:
+    _DIR: sazaxa
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - mkdir $_DIR
+        - cd $_DIR
+        - npm install
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: /$_DIR/dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - /$_DIR/node_modules/**/*
