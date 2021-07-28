@@ -11,6 +11,8 @@ const App = () => {
     console.log('local:', localStorage.getItem('key'));
   };
 
+  // amplify-test-1
+
   return (
     <>
     <ThemeProvider theme={theme}>
