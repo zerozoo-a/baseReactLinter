@@ -36,20 +36,23 @@ module.exports = {
   ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist/public/'),
-    publicPath: './public/',
+    // path: path.resolve(__dirname, 'dist/public/'),
+    path: path.resolve(__dirname, 'dist/'),
+    // publicPath: './public/',
+    // publicPath: './dist/',
   },
   devServer: {
     port: 9000,
     open: true,
     hot: true,
-    contentBase: path.join(__dirname, 'dist'),
+    // contentBase: path.join(__dirname, 'dist'),
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: '../index.html',
+      // filename: '../index.html',
       template: './index.html',
-      publicPath: './public/',
+      // publicPath: './public/',
+      // publicPath: './dist/',
     }),
     new CleanWebpackPlugin(),
   ],

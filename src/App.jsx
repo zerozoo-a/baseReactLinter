@@ -17,7 +17,7 @@ const App = () => {
     <>
     <ThemeProvider theme={theme}>
       <div>hello world!</div>
-      <button onClick={onClick}>button</button>
+      <button onClick={onClick}>dsss</button>
       <Nav />
     </ThemeProvider>
     </>
