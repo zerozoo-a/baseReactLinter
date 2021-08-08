@@ -1,59 +1,54 @@
-const path = require('path');
 const webpack = require('webpack');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
+
 console.log('isDev?: ', isDevelopment);
 module.exports = {
-  name: 'setVersionTest',
-  mode: isDevelopment ? 'development' : 'production',
-  devtool: isDevelopment && 'eval',
+  entry: './src/Client.jsx',
   resolve: {
-    extensions: ['.js', '.jsx', 'json'],
+    extensions: ['.js', '.jsx', 'json', 'ttf'],
   },
-  entry: './Client.jsx',
+  devtool: isDevelopment && 'eval',
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    assetModuleFilename: 'images/[hash][ext][query]',
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.?jsx$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: require.resolve('babel-loader'),
-            options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-            },
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
           },
-        ],
+        },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        type: 'asset/resource',
       },
     ],
   },
   plugins: [
-    isDevelopment && new webpack.HotModuleReplacementPlugin(),
-    isDevelopment && new ReactRefreshWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
+    new CleanWebpackPlugin(),
+    new Dotenv({
+      path: './src/.env',
+      safe: true,
+    }),
   ],
-  output: {
-    filename: '[name].bundle.js',
-    // path: path.resolve(__dirname, 'dist/public/'),
-    path: path.resolve(__dirname, 'dist/'),
-    // publicPath: './public/',
-    // publicPath: './dist/',
-  },
   devServer: {
     port: 9000,
     open: true,
     hot: true,
-    // contentBase: path.join(__dirname, 'dist'),
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      // filename: '../index.html',
-      template: './index.html',
-      // publicPath: './public/',
-      // publicPath: './dist/',
-    }),
-    new CleanWebpackPlugin(),
-  ],
 };
