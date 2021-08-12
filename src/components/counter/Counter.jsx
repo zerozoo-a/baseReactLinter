@@ -5,7 +5,7 @@ const Counter=()=>{
 		<div>
 			<h1 
 			id='counterHeader'
-			data-testId='counterHeader'
+			data-testid='counterHeader'
 			>Counter</h1>
 
 		</div>
