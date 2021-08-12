@@ -2,23 +2,13 @@ import React, { useState } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from '../assets/theme';
 
-import Nav from './components/Nav';
+// import Nav from './components/Nav';
 const App = () => {
-  const [storage, setStorage] = useState('');
-
-  const onClick = () => {
-    localStorage.setItem('key', 'hohohaha');
-    console.log('local:', localStorage.getItem('key'));
-  };
-
-  // amplify-test-4
 
   return (
     <>
     <ThemeProvider theme={theme}>
       <div>hello world!</div>
-      <button onClick={onClick}>dsss</button>
-      <Nav />
     </ThemeProvider>
     </>
   );
